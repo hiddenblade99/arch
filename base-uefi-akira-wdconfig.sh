@@ -31,7 +31,3 @@ useradd -m akira
 echo akira:password | chpasswd
 echo "akira ALL=(ALL) ALL" >> /etc/sudoers.d/akira
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
-
-
-
-
