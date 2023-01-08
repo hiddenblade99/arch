@@ -1,4 +1,4 @@
-/* RAD DWM */
+                                                                      /* RAD DWM */
 
 static const unsigned int borderpx  = 5;        
 static const unsigned int snap      = 32;       
