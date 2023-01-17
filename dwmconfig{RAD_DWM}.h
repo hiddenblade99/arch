@@ -1,15 +1,18 @@
-                                                                      /* RAD DWM */
+                                                           /* RAD DWM */
+
+
+
 
 static const unsigned int borderpx  = 5;        
-static const unsigned int snap      = 32;       
+static const unsigned int snap      = 32;
 static const int showbar            = 1;        
-static const int topbar             = 1;        
-static const char *fonts[]          = { "JetBrains Mono NL:style=Bold:size=10" };
+static const int topbar             = 0;        
+static const char *fonts[]          = { "JetBrains Mono NL:style=Bold:size=11" };
 static const char dmenufont[]       = "JetBrains Mono NL:style=Bold:size=10";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#000000";
-static const char col_gray3[]       = "#eb00ff";
-static const char col_gray4[]       = "#FF0000";
+static const char col_gray3[]       = "#EB00FF";
+static const char col_gray4[]       = "#ff0000";
 static const char col_cyan[]        = "#ff0000";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
@@ -18,7 +21,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { " A "," K "," I "," R "," A "  };
+static const char *tags[] = { " A ", " K "," I "," R "," A " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -31,7 +34,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -57,16 +60,27 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "xfce4-terminal", NULL };
-static const char *web[] = { "firefox", NULL };
+static const char *web[] = { "chromium", NULL };
 static const char *gram[] = { "telegram-desktop", NULL };
 static const char *files[] = { "thunar", NULL };
 static const char *re[] = { "reboot", NULL };
 static const char *off[] = { "poweroff", NULL };
+static const char *dark[] = { "brightnessctl", "set", "1%-", NULL }; /* INSTALL brightnessctl FOR THIS FUNCTION */
+static const char *light[] = { "brightnessctl", "set", "1%+", NULL };
+static const char *volup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volmute[] = { "pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,			XK_F2,     spawn,	   {.v = dark } },
+	{ MODKEY,                       XK_F3,     spawn,          {.v = light } },
+	{ MODKEY,			XK_F7,     spawn,          {.v = voldown } },
+	{ MODKEY,                       XK_F8,     spawn,          {.v = volup } },
+	{ MODKEY,			XK_F6,     spawn,          {.v = volmute } },
 	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = off } },
 	{ MODKEY|ShiftMask,             XK_8,      spawn,          {.v = re } },
@@ -122,4 +136,6 @@ static const Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+
+ 
 
